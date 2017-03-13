@@ -10,6 +10,8 @@ import {last} from './base'
 export const get = (obj, path) => {
   if(!isPlainObject(obj) && !isArray(obj)) return undefined
   if(!path) return obj
+  //compatible with lodash get
+  path = path.replace(/\[|\]\./g, '.')
   let pathArray = path.split('.')
   let p;
   let v = obj;

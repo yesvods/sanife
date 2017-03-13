@@ -46,6 +46,8 @@ var has = function (o, item) {
 var get = function (obj, path) {
   if(!isPlainObject(obj) && !isArray(obj)) { return undefined }
   if(!path) { return obj }
+  //compatible with lodash get
+  path = path.replace(/\[|\]\./g, '.');
   var pathArray = path.split('.');
   var p;
   var v = obj;

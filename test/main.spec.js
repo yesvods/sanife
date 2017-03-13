@@ -15,9 +15,11 @@ test('pick', t => {
     a: 'a',
     b: {
       c: 'c'
-    }
+    },
+    e: [{f: 'f'}]
   }
   t.deepEqual(pick(o, ['a', 'b.c']), {a: 'a', c: 'c'})
+  t.deepEqual(pick(o, ['e[0].f']), {f: 'f'})
 })
 
 test('contains', t => {
