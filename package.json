@@ -6,7 +6,7 @@
     "test": "ava",
     "test:dev": "ava -w -v"
   },
-  "version": "0.1.1",
+  "version": "0.1.2",
   "babel": {
     "presets": [
       "es2015"
