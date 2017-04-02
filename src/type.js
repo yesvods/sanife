@@ -13,6 +13,7 @@ export const isString = obj => isType('string')(obj)
 export const isNumber = obj => isType('number')(obj)
 export const isArray = obj => isType('object')(obj) && !!obj.slice
 export const isFunction = obj => isType('function')(obj)
+export const isObject = obj => isType('object')(obj)
 export const isPlainObject = obj => isType('object')(obj) && !isArray(obj)
 export const isUndefined = obj => isType('undefined')(obj)
 

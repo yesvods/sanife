@@ -1,5 +1,5 @@
 import test from 'ava'
-import {get, pick, contains} from '../src/main'
+import {get, set, pick, contains, escapeHtml, unescapeHtml} from '../src/main'
 
 test('get', t => {
   let o = {people: {name: 'xiaoming'}}
@@ -8,6 +8,11 @@ test('get', t => {
   t.deepEqual(get(o, '0.name'), 'xiaoming')
   o = {people: [{name: 'xiaoming'}]}
   t.deepEqual(get(o, 'people.0.name'), 'xiaoming')
+})
+
+test('set', t => {
+  let o = {}
+  t.deepEqual(set(o, 'class.name', 'oops'), {class: {name: 'oops'}})
 })
 
 test('pick', t => {
@@ -27,4 +32,9 @@ test('contains', t => {
   t.false(contains([1,2,3], 4))
   t.true(contains('a b c', 'a'))
   t.true(contains({name: 123, age: 32}, 'name'))
+})
+
+test('escap', t => {
+  t.is(escapeHtml('&'), '&amp')
+  t.is(unescapeHtml('&amp;'), '&')
 })
