@@ -5,11 +5,6 @@ export const last = arr => {
   return arr[arr.length-1]
 }
 
-export const has = (o, item) => {
-  if(isArray(o) || isString(o)){
-    return o.indexOf(item) >=0
-  }
-  return false
-}
+export const noop = function(){}
 
 export const hasOwnProperty = Object.prototype.hasOwnProperty
