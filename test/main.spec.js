@@ -1,5 +1,10 @@
 import test from 'ava'
-import {get, set, pick, contains, escapeHtml, unescapeHtml} from '../src/main'
+import {
+  get, set, pick,
+  contains,
+  // urlMix, 
+  remove,
+} from '../src/main'
 
 test('get', t => {
   let o = {people: {name: 'xiaoming'}}
@@ -34,7 +39,14 @@ test('contains', t => {
   t.true(contains({name: 123, age: 32}, 'name'))
 })
 
-test('escap', t => {
-  t.is(escapeHtml('&'), '&amp')
-  t.is(unescapeHtml('&amp;'), '&')
+
+test('remove', t => {
+  const arr = [1,2,3]
+  const o1 = {v: 1}
+  const o2 = {v: 2}
+  const o3 = {v: 3} 
+  const oArr = [o1, o2, o3]
+  t.deepEqual(remove(arr, 2), [1, 3])
+  t.is(remove('123', '2'), '13')
+  t.deepEqual(remove(oArr, o1), [o2, o3])
 })

@@ -6,11 +6,15 @@
     "test": "ava",
     "test:dev": "ava -w -v"
   },
-  "version": "0.1.3",
+  "version": "0.1.4",
   "babel": {
     "presets": [
       "es2015"
     ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yesvods/sanife.git"
   },
   "main": "dist",
   "ava": {

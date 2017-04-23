@@ -1,3 +1,5 @@
+import {hasOwnProperty} from './base'
+
 /**
  * isType
  * @param  {[type]} type [description]
@@ -21,3 +23,17 @@ export const isUri = (() => {
   const reg = /(https?:)?\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/
   return url => reg.test(url)
 })()
+
+export const isDOMNode = n => !!n.nodeName
+export const isEmpty = value => {
+  if(!value) return true
+  if(isArray(value)) return !value.length
+  if(isPlainObject(value)){
+    for(const key in value){
+      if(hasOwnProperty.call(value, key)){
+        return false
+      }
+    }
+  }
+  return true
+}

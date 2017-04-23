@@ -7,6 +7,7 @@ import {
   isPlainObject,
   isUndefined,
   isUri,
+  isEmpty,
 } from '../src/type';
 
 const noop = function(){}
@@ -50,4 +51,11 @@ test('isUrl', t => {
   t.true(isUri('ftp://xx.com'))
   t.false(isUri('xx.com'))
   t.false(isUri('xx'))
+})
+
+test('isEmpty', t => {
+  t.true(isEmpty([]))
+  t.true(isEmpty({}))
+  t.false(isEmpty([1]))
+  t.false(isEmpty({name: 1}))
 })

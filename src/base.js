@@ -11,3 +11,5 @@ export const has = (o, item) => {
   }
   return false
 }
+
+export const hasOwnProperty = Object.prototype.hasOwnProperty
