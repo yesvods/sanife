@@ -2,6 +2,7 @@ import gulp from 'gulp'
 import buble from 'rollup-plugin-buble'
 import uglify from 'rollup-plugin-uglify'
 import rollup from 'gulp-rollup'
+import babel from 'gulp-babel'
 import del from 'del'
 
 gulp.task('clean', cb => {
@@ -20,9 +21,6 @@ gulp.task('build:dist', ['clean'], () => {
 
 gulp.task('build:lib', ['clean'], () => {
   return gulp.src('./src/**/*.js')
-    .pipe(rollup({
-      format: 'cjs',
-      plugins: [buble()]
-    }))
+    .pipe(babel())
     .pipe(gulp.dest('./lib'))
 })

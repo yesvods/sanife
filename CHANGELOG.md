@@ -1,3 +1,6 @@
+## 0.1.5
+`lib` as main folder
+
 ## 0.1.4
 - unescapHtml and escapeHtml
 + remove
