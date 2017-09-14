@@ -4,5 +4,5 @@ import {
 } from '../src/base'
 
 test('noop', t => {
-  
+  t.is(1, 1)
 })

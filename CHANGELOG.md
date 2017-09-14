@@ -1,15 +1,19 @@
+## 0.1.8
++ Method: urlMix
++ Improve: more document
+
 ## 0.1.5
-`lib` as main folder
++ Improve: `lib` as main folder
 
 ## 0.1.4
-- unescapHtml and escapeHtml
-+ remove
-+ isDOMNode
-+ isEmpty
-+ noop
+- Method: unescapHtml and escapeHtml
++ Method: remove
++ Method: isDOMNode
++ Method: isEmpty
++ Method: noop
 
 ## 0.1.3
-+ unescapHtml and escapeHtml
++ Method: unescapHtml and escapeHtml
 
 ## 0.1.1
-compatible with lodash get
++ Improve: compatible with lodash get

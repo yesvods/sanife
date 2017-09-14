@@ -23,6 +23,7 @@ export const get = (obj, path, defaultValue) => {
   return v
 }
 
+
 export const set = (obj, path, value) => {
   if(!isPlainObject(obj)) return undefined
   
@@ -45,6 +46,13 @@ export const set = (obj, path, value) => {
   return obj
 }
 
+/**
+ * Pick values from Object by keys
+ * @param  {Object} obj  
+ * @param  {Array} keys 
+ * @return {Array}      values picked by provided keys
+ * pick({a: 1, b: 2}, 'a') => {a: 1}
+ */
 export const pick = (obj, keys) => {
   if(!isPlainObject(obj) || !isArray(keys)) return obj
   return keys.map(path => {
@@ -57,6 +65,14 @@ export const pick = (obj, keys) => {
   }, {})
 }
 
+/**
+ * whether key in Object or Array
+ * @param  {Object} obj 
+ * @param  {String} key 
+ * @return {Boolean}
+ * contains([1,2], 1) => true
+ * contains({a: 1, b: 2}, 'a') => true    
+ */
 export const contains = (obj, key) => {
   if(isString(obj) || isArray(obj)){
     return obj.indexOf(key) >=0
@@ -67,6 +83,13 @@ export const contains = (obj, key) => {
   return false
 }
 
+/**
+ * remove the subString from String
+ * remove the item from Array
+ * @param  {Object | Array} value 
+ * @param  {String} key   
+ * @return {String}
+ */
 export const remove = (value, key) => {
   if(isString(value)){
     const index = value.indexOf(key)
@@ -83,35 +106,77 @@ export const remove = (value, key) => {
   return value
 }
 
-// export const urlMix = (url, defaultParams = {}, mergeParam = true) => {
-//   if(!isUri(url)) return url
-//   let index = url.split('?')
-//   let queryObject = {}
-
-//   if(index >= 0){
-//     queryObject = url.slice(index+1).split('&').reduce((memo, x) => {
-//       let arr = x.split('=')
-//       let v = memo[arr[0]]
-//       if(v && !mergeParam){
-//         if(isArray(v)) v.push()
-//         else memo[arr[0]] = [v, arr[1]]
-//       }else {
-//         memo[arr[0]] = arr[1]
-//       }
-//       return memo
-//     }, {})
-//   }
-
-//   let params = {}
-  
-//   params = Object.keys(defaultParams).reduce((memo, key) => {
-//     let v1 = defaultParams[key]
-//     let v2 = queryObject[key]
-//     if(isArray(v1) || isArray(v2)){
-//       memo[key] = [].concat(v1, v2)
-//     }else {
-//       memo[key] = v1
+// export const quickMerge = (a, b) => {
+//   a = a || {};
+//   for (var i in b) {
+//     if (isPlainObject(b[i])) {
+//       a[i] = quickMerge(a[i], b[i]);
+//     } else if(isArray(b[i])){
+//       a[i] = [].concat(a[i], b[i]);
+//     } else {
+//       a[i] = b[i]
 //     }
-//     return memo
-//   }, queryObject)
+//   }
+//   return a;
 // }
+
+// export const merge = (...args) => {
+//   return args.reduce((memo, next) => {
+//     return quickMerge(memo, next)
+//   })
+// }
+
+/**
+ * mix extra param with existing url
+ * @param  {String}  url         validate url
+ * @param  {Object}  extraParams extra param
+ * @param  {Boolean} mergeParam  
+ *    whether merge params into an array or just override
+ * @return {String}              new url
+ */
+export const urlMix = (url, extraParams = {}, mergeParam = false) => {
+  if(!isUri(url)) return url
+  let index = url.indexOf('?')
+  let queryObject = {}
+  let pureUrl = url.slice(0, index)
+
+  if(index >= 0){
+    queryObject = url.slice(index+1).split('&').reduce((memo, x) => {
+      let arr = x.split('=')
+      let v = memo[arr[0]]
+      if(v && !mergeParam){
+        if(isArray(v)) v.push(arr[1])
+        else memo[arr[0]] = [v, arr[1]]
+      }else {
+        memo[arr[0]] = arr[1]
+      }
+      return memo
+    }, {})
+  }
+
+  let params = {}
+  
+  params = Object.keys(extraParams).reduce((memo, key) => {
+    let v1 = extraParams[key]
+    let v2 = queryObject[key]
+    if(mergeParam && v1 && v2){
+      memo[key] = [].concat(v1, v2)
+    }else {
+      memo[key] = v1
+    }
+    return memo
+  }, queryObject)
+
+  let queryStr = Object.keys(params).map(key => {
+    let v = params[key]
+    let s = ''
+    if(isArray(v)){
+      s = v.map(x => `${key}=${x}`).join('&')
+    }else {
+      s = `${key}=${v}`
+    }
+    return s
+  }).join('&')
+
+  return `${pureUrl}?${queryStr}`
+}

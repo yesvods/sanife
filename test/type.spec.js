@@ -56,6 +56,8 @@ test('isUrl', t => {
 test('isEmpty', t => {
   t.true(isEmpty([]))
   t.true(isEmpty({}))
+  t.true(isEmpty(null))
+  t.true(isEmpty(undefined))
   t.false(isEmpty([1]))
   t.false(isEmpty({name: 1}))
 })
