@@ -1,3 +1,6 @@
+## 0.1.9
++ Fix: MixUrl support any string to be url
+
 ## 0.1.8
 + Method: urlMix
 + Improve: more document

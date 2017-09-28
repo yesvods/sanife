@@ -135,7 +135,7 @@ export const remove = (value, key) => {
  * @return {String}              new url
  */
 export const urlMix = (url, extraParams = {}, mergeParam = false) => {
-  if(!isUri(url)) return url
+  if(!isString(url)) return url
   let index = url.indexOf('?')
   let queryObject = {}
   let pureUrl = url.slice(0, index)

@@ -1,4 +1,4 @@
-# Sanife -- Swiss Army Knife
+# Sanife -- Swiss Army Knife [![Build Status](https://travis-ci.org/yesvods/sanife.svg?branch=master)](https://travis-ci.org/yesvods/sanife)
 
 **Slight and Elegance Function Utils.**
 

@@ -87,16 +87,28 @@ test('remove', t => {
 //   )
 // })
 
-test('urlMix', t => {
-  let url = "http://xx.com?a=1&b=2"
+// test('urlMix - FullUrlPath', t => {
+//   let url = "http://xx.com?a=1&b=2"
+//   t.is(
+//     urlMix(url, {c: 3, b: 1}, true),
+//     "http://xx.com?a=1&b=1&b=2&c=3"
+//   )
+
+//   t.is(
+//     urlMix(url, {c: 3, b: 1}, false),
+//     "http://xx.com?a=1&b=1&c=3"
+//   )
+// })
+
+test('urlMix - relativePath', t => {
+  let url = "/hello.do?a=1&b=2"
   t.is(
     urlMix(url, {c: 3, b: 1}, true),
-    "http://xx.com?a=1&b=1&b=2&c=3"
+    "/hello.do?a=1&b=1&b=2&c=3"
   )
 
   t.is(
     urlMix(url, {c: 3, b: 1}, false),
-    "http://xx.com?a=1&b=1&c=3"
+    "/hello.do?a=1&b=1&c=3"
   )
-
 })
