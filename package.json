@@ -4,9 +4,9 @@
   "scripts": {
     "build": "gulp build:dist build:lib",
     "test": "ava",
-    "test:dev": "ava -w -v"
+    "dev": "ava -w -v"
   },
-  "version": "0.1.9",
+  "version": "0.1.10",
   "babel": {
     "presets": [
       "es2015"

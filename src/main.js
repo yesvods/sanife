@@ -87,21 +87,24 @@ export const contains = (obj, key) => {
  * remove the subString from String
  * remove the item from Array
  * @param  {Object | Array} value 
- * @param  {String} key   
+ * @param  {String} keys
  * @return {String}
  */
-export const remove = (value, key) => {
+export const remove = (value, keys) => {
+  keys = [].concat(keys)
   if(isString(value)){
-    const index = value.indexOf(key)
-    if(index>=0){
-      return value.slice(0, index) + value.slice(key.length+index)
+    for(let key of keys){
+      const index = value.indexOf(key)
+      if(index>=0){
+        return value.slice(0, index) + value.slice(key.length+index)
+      }
     }
-  }
-  if(isArray(value)){
-    const index = value.indexOf(key)
-    if(index >= 0)
-      value.splice(index, 1)
-      return value
+  }else if(isArray(value)){
+    for(let key of keys){
+      const index = value.indexOf(key)
+      if(index >= 0)
+        value.splice(index, 1)
+    }
   }
   return value
 }

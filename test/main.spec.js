@@ -49,6 +49,7 @@ test('remove', t => {
   const o3 = {v: 3} 
   const oArr = [o1, o2, o3]
   t.deepEqual(remove(arr, 2), [1, 3])
+  t.deepEqual(remove(arr, [1, 2]), [3])
   t.is(remove('123', '2'), '13')
   t.deepEqual(remove(oArr, o1), [o2, o3])
 })

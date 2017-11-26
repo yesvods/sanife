@@ -1,3 +1,6 @@
+## 0.1.10
++ Improve: `remove` support remove multi key
+
 ## 0.1.9
 + Fix: MixUrl support any string to be url
 
