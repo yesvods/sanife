@@ -13,7 +13,7 @@ $ npm install sanife
 
 ```js
 // ES6 Module
-import _ from 'sanife'
+import * as _ from 'sanife'
 
 // COMMONJS
 const _ = require('sanife')
@@ -145,5 +145,3 @@ All kind of slight type detection
 ### #isUri
 
 ### #isDONNode
-
-###
