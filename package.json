@@ -6,11 +6,9 @@
     "test": "ava",
     "dev": "ava -w -v"
   },
-  "version": "0.1.10",
+  "version": "0.1.11",
   "babel": {
-    "presets": [
-      "es2015"
-    ]
+    "presets": ["es2015"]
   },
   "repository": {
     "type": "git",
@@ -18,17 +16,10 @@
   },
   "main": "lib",
   "ava": {
-    "files": [
-      "test/**/*.spec.js"
-    ],
-    "source": [
-      "src/**/*.js"
-    ],
+    "files": ["test/**/*.spec.js"],
+    "source": ["src/**/*.js"],
     "concurrency": 10,
-    "require": [
-      "babel-register",
-      "babel-polyfill"
-    ],
+    "require": ["babel-register", "babel-polyfill"],
     "babel": "inherit"
   },
   "devDependencies": {

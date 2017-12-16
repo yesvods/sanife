@@ -4,13 +4,14 @@ import {
   isNumber,
   isArray,
   isFunction,
+  isBoolean,
   isPlainObject,
   isUndefined,
   isUri,
   isEmpty,
-} from '../src/type';
+} from '../src/type'
 
-const noop = function(){}
+const noop = function() {}
 
 test('isString', t => {
   t.true(isString('sd'))
@@ -28,9 +29,17 @@ test('isArray', t => {
 })
 
 test('isFunction', t => {
-  const fn = () => {console.log('hello')}
+  const fn = () => {
+    console.log('hello')
+  }
   t.true(isFunction(fn))
   t.false(isFunction(1234))
+})
+
+test('isFunction', t => {
+  t.true(isBoolean(false))
+  t.true(isBoolean(true))
+  t.false(isBoolean(1234))
 })
 
 test('isPlainObject', t => {
@@ -59,5 +68,5 @@ test('isEmpty', t => {
   t.true(isEmpty(null))
   t.true(isEmpty(undefined))
   t.false(isEmpty([1]))
-  t.false(isEmpty({name: 1}))
+  t.false(isEmpty({ name: 1 }))
 })

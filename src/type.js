@@ -1,4 +1,4 @@
-import {hasOwnProperty} from './base'
+import { hasOwnProperty } from './base'
 
 /**
  * isType
@@ -7,7 +7,7 @@ import {hasOwnProperty} from './base'
  */
 export const isType = type => obj => typeof obj == type
 /**
- * isString 
+ * isString
  * @param  {[type]} obj [description]
  * @return {[type]}     [description]
  */
@@ -15,6 +15,7 @@ export const isString = obj => isType('string')(obj)
 export const isNumber = obj => isType('number')(obj)
 export const isArray = obj => isType('object')(obj) && !!obj.slice
 export const isFunction = obj => isType('function')(obj)
+export const isBoolean = obj => isType('boolean')(obj)
 export const isObject = obj => isType('object')(obj)
 export const isPlainObject = obj => isType('object')(obj) && !isArray(obj)
 export const isUndefined = obj => isType('undefined')(obj)
@@ -26,11 +27,11 @@ export const isUri = (() => {
 
 export const isDOMNode = n => !!n.nodeName
 export const isEmpty = value => {
-  if(!value) return true
-  if(isArray(value)) return !value.length
-  if(isPlainObject(value)){
-    for(const key in value){
-      if(hasOwnProperty.call(value, key)){
+  if (!value) return true
+  if (isArray(value)) return !value.length
+  if (isPlainObject(value)) {
+    for (const key in value) {
+      if (hasOwnProperty.call(value, key)) {
         return false
       }
     }
