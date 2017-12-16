@@ -50,13 +50,11 @@ export const set = (obj, path, value) => {
 
     if (i >= pathArray.length - 1) {
       v[p] = value
-    } else {
-      if (isUndefined(v[p])) {
-        if (isNumber(np)) {
-          v[p] = []
-        } else {
-          v[p] = {}
-        }
+    } else if (isUndefined(v[p])) {
+      if (isNumber(np)) {
+        v[p] = []
+      } else {
+        v[p] = {}
       }
     }
     v = v[p]
@@ -155,7 +153,7 @@ export const remove = (value, keys) => {
  * @return {String}              new url
  */
 export const urlMix = (url, extraParams = {}, mergeParam = false) => {
-  if (!isString(url)) return url
+  if (!isString(url)) return ''
   let index = url.indexOf('?')
   let queryObject = {}
   let pureUrl = url.slice(0, index)

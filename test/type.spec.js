@@ -6,6 +6,7 @@ import {
   isArray,
   isFunction,
   isBoolean,
+  isObject,
   isPlainObject,
   isUndefined,
   isUri,
@@ -22,6 +23,12 @@ test('isString', t => {
 test('isNumber', t => {
   t.false(isNumber('sd'))
   t.true(isNumber(1234))
+})
+
+test('isObject', t => {
+  t.false(isObject(132))
+  t.true(isObject({}))
+  t.true(isObject([]))
 })
 
 test('isNumberStr', t => {
