@@ -6,7 +6,7 @@
     "test": "ava",
     "dev": "ava -w -v"
   },
-  "version": "0.1.11",
+  "version": "0.1.12",
   "babel": {
     "presets": ["es2015"]
   },
@@ -38,5 +38,8 @@
     "rollup-plugin-uglify": "^2.0.1",
     "webpack-stream": "^4.0.0",
     "webpack-uglify-js-plugin": "^1.1.9"
+  },
+  "dependencies": {
+    "docdown": "^0.7.2"
   }
 }

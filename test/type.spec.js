@@ -2,6 +2,7 @@ import test from 'ava'
 import {
   isString,
   isNumber,
+  isNumberStr,
   isArray,
   isFunction,
   isBoolean,
@@ -21,6 +22,11 @@ test('isString', t => {
 test('isNumber', t => {
   t.false(isNumber('sd'))
   t.true(isNumber(1234))
+})
+
+test('isNumberStr', t => {
+  t.false(isNumberStr('12f'))
+  t.true(isNumberStr('1234'))
 })
 
 test('isArray', t => {

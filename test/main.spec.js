@@ -35,6 +35,11 @@ test('get', t => {
 test('set', t => {
   let o = {}
   t.deepEqual(set(o, 'class.name', 'oops'), { class: { name: 'oops' } })
+
+  o = {}
+  t.deepEqual(set(o, 'class[0].names[0]', 'oops'), {
+    class: [{ names: ['oops'] }],
+  })
 })
 
 test('pick', t => {
@@ -64,7 +69,7 @@ test('remove', t => {
   const oArr = [o1, o2, o3]
   t.deepEqual(remove(arr, 2), [1, 3])
   t.deepEqual(remove(arr, [1, 2]), [3])
-  t.is(remove('123', '2'), '13')
+  t.is(remove('12321474312', ['2', '3']), '114741')
   t.deepEqual(remove(oArr, o1), [o2, o3])
 })
 

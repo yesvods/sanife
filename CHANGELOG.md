@@ -1,3 +1,8 @@
+## 0.1.12
+
+* Method Added: `isNumberStr`
+* Fix: `set` for array assign
+
 ## 0.1.11
 
 * Method Added: `isBoolean`

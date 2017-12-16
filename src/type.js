@@ -6,6 +6,7 @@ import { hasOwnProperty } from './base'
  * @return {[type]}      [description]
  */
 export const isType = type => obj => typeof obj == type
+
 /**
  * isString
  * @param  {[type]} obj [description]
@@ -19,6 +20,8 @@ export const isBoolean = obj => isType('boolean')(obj)
 export const isObject = obj => isType('object')(obj)
 export const isPlainObject = obj => isType('object')(obj) && !isArray(obj)
 export const isUndefined = obj => isType('undefined')(obj)
+
+export const isNumberStr = obj => +obj == obj
 
 export const isUri = (() => {
   const reg = /(https?:)?\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/

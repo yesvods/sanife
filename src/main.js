@@ -4,9 +4,11 @@ import {
   isPlainObject,
   isUndefined,
   isArray,
+  isNumber,
+  isNumberStr,
   isString,
 } from './type'
-import { last } from './base'
+import { last, isLast } from './base'
 
 /**
  * get attribute from path, return undefined when no such path
@@ -34,21 +36,32 @@ export const set = (obj, path, value) => {
   if (!isPlainObject(obj)) return undefined
 
   //compatible with lodash style
-  path = path.replace(/\[|\]\./g, '.')
+  path = path.replace(/\[|\]/g, '.')
 
-  let pathArray = path.split('.')
+  let pathArray = path.split('.').filter(p => p)
   let p
   let v = obj
 
   for (let i = 0; i < pathArray.length; i++) {
     let p = pathArray[i]
+    p = +p == p ? +p : p
+    let np = pathArray[i + 1]
+    np = +np == np ? +np : np
+
     if (i >= pathArray.length - 1) {
       v[p] = value
     } else {
-      if (isUndefined(v[p])) v[p] = {}
+      if (isUndefined(v[p])) {
+        if (isNumber(np)) {
+          v[p] = []
+        } else {
+          v[p] = {}
+        }
+      }
     }
     v = v[p]
   }
+
   return obj
 }
 
@@ -102,10 +115,7 @@ export const remove = (value, keys) => {
   keys = [].concat(keys)
   if (isString(value)) {
     for (let key of keys) {
-      const index = value.indexOf(key)
-      if (index >= 0) {
-        return value.slice(0, index) + value.slice(key.length + index)
-      }
+      value = value.replace(new RegExp(key, 'g'), '')
     }
   } else if (isArray(value)) {
     for (let key of keys) {
