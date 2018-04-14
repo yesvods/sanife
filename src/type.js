@@ -14,12 +14,21 @@ export const isType = type => obj => typeof obj == type
  */
 export const isString = obj => isType('string')(obj)
 export const isNumber = obj => isType('number')(obj)
-export const isArray = obj => isType('object')(obj) && !!obj.slice
+export const isArray = obj => obj instanceof Array
 export const isFunction = obj => isType('function')(obj)
 export const isBoolean = obj => isType('boolean')(obj)
 export const isObject = obj => isType('object')(obj)
-export const isPlainObject = obj => isType('object')(obj) && !isArray(obj)
 export const isUndefined = obj => isType('undefined')(obj)
+export const isPlainObject = obj => {
+  if (typeof obj !== 'object' || obj === null) return false
+
+  let proto = obj
+  while (Object.getPrototypeOf(proto) !== null) {
+    proto = Object.getPrototypeOf(proto)
+  }
+
+  return Object.getPrototypeOf(obj) === proto
+}
 
 export const isNumberStr = obj => +obj == obj
 

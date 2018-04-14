@@ -7,15 +7,10 @@
     "dev": "ava -w -v",
     "report": "nyc report --reporter=html"
   },
-  "version": "0.1.12",
+  "version": "0.1.13",
   "babel": {
-    "presets": [
-      "es2015",
-      "stage-0"
-    ],
-    "plugins": [
-      "transform-runtime"
-    ],
+    "presets": ["es2015", "stage-0"],
+    "plugins": ["transform-runtime"],
     "ignore": "test.js",
     "env": {
       "development": {
@@ -29,17 +24,10 @@
   },
   "main": "lib",
   "ava": {
-    "files": [
-      "test/**/*.spec.js"
-    ],
-    "source": [
-      "src/**/*.js"
-    ],
+    "files": ["test/**/*.spec.js"],
+    "source": ["src/**/*.js"],
     "concurrency": 10,
-    "require": [
-      "babel-register",
-      "babel-polyfill"
-    ],
+    "require": ["babel-register", "babel-polyfill"],
     "babel": "inherit"
   },
   "devDependencies": {
